@@ -1,13 +1,11 @@
 # use python as a parent image
-FROM python:3
+FROM node:10
 
 # set the workind directory
-WORKDIR /app
+# WORKDIR /app
 
 # copy the current directory contents into app folder
-COPY . /app
+# COPY . /app
 
 # install packages from requirements
-RUN pip install --no-cache-dir -r requirements.txt
-
-CMD [ "python3", "./pymongo_run.py"]
+RUN npm install -g elasticdump

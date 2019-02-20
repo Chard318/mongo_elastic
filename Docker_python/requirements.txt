@@ -1,0 +1,6 @@
+pprint
+elastic2-doc-manager
+elasticsearch
+mongo-connector
+urllib3
+pymongo

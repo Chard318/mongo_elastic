@@ -1,5 +1,13 @@
+#!/bin/bash
+
+sleep 30
+
+python3 /app/pymongo_run.py
+mongo-connector -m mongo:27017 -t es:9200 -d elastic2_doc_manager
+
+
  curl -H 'Content-Type: application/json' \
-   -X PUT http://localhost:9200/shellfish_db_opt \
+   -X PUT http://es:9200/shellfish_db_opt \
    -d \
   "{ \
       \"settings\": { \
@@ -27,7 +35,7 @@
   }"
 
   curl -H 'Content-Type: application/json' \
-        -X PUT http://localhost:9200/shellfish_db_opt/_mapping/employee \
+        -X PUT http://es:9200/shellfish_db_opt/_mapping/employee \
         -d \
        "{ \
            \"employee\": { \
@@ -216,3 +224,4 @@
                } \
            } \
        }"
+

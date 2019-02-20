@@ -9,7 +9,7 @@ cwd = os.getcwd()
 from pymongo import MongoClient
 #client = MongoClient('localhost', 27017)
 #need to find better way to find mongo client ...
-client = MongoClient('172.17.0.2', 27017) 
+client = MongoClient('mongo', 27017) 
 db = client.shellfish_db
 collection = db.employee
 

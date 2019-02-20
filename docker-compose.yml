@@ -1,0 +1,46 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    entrypoint: 
+      - "/usr/bin/mongod"
+      - "--replSet"
+      - "Shellfish_db_repl"
+      - "--bind_ip"
+      - "0.0.0.0"
+    expose:
+      - "27017"
+    
+  es:
+    image: elasticsearch:6.6.0
+    environment:
+      discovery.type: single-node
+    user: elasticsearch
+    expose:
+      - "9200"
+      - "9300"
+  
+  mongosetup:
+    image: mongo
+    volumes:
+      - ./mongosetup.sh:/mongosetup.sh
+    entrypoint:
+      ["/mongosetup.sh"]
+  
+  pythonsetup:
+    build: ./Docker_python
+    # image: python:3
+    volumes:
+      - ./pythonsetup.sh:/pythonsetup.sh
+    entrypoint:
+      ["/pythonsetup.sh"]
+  
+  nodesetup:
+    build: ./Docker_node
+    volumes:
+      - ./elasticdump.sh:/elasticdump.sh
+    entrypoint:
+      ["/elasticdump.sh"]
+  
+  
+    
