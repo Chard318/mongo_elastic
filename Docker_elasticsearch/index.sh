@@ -1,6 +1,9 @@
- curl -H 'Content-Type: application/json' \
-   -X PUT http://localhost:9200/shellfish_db_opt \
-   -d \
+#!/bin/bash 
+# -X PUT http://localhost:9200/shellfish_db_opt \
+
+curl -H 'Content-Type: application/json' \
+  -X PUT http://$(hostname -I):9200/shellfish_db_opt \
+  	-d \
   "{ \
       \"settings\": { \
           \"number_of_shards\": 1, \
@@ -25,9 +28,9 @@
           } \
       } \
   }"
-
+  #-X PUT http://localhost:9200/shellfish_db_opt/_mapping/employee \
   curl -H 'Content-Type: application/json' \
-        -X PUT http://localhost:9200/shellfish_db_opt/_mapping/employee \
+  -X PUT http://$(hostname -I):9200/shellfish_db_opt/_mapping/employee \
         -d \
        "{ \
            \"employee\": { \
