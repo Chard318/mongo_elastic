@@ -12,10 +12,12 @@
 # echo curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1
 # echo "Started.."
 
+# wait for mongodb to startup
 sleep 15
 
-
 echo SETUP.sh time now: `date +"%T" `
+
+# initialize replica set from mongo shell
 mongo --host mongo:27017 <<EOF
 rs.initiate()
 EOF

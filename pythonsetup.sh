@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# wait for mongodb and elasticsearch up and running
 sleep 30
 
+# run python script pymongo_run.py to upload files to mongodb
 python3 /app/pymongo_run.py
+
+# connect mongodb and elasticsearch using mongo-connector
 mongo-connector -m mongo:27017 -t es:9200 -d elastic2_doc_manager
 
-
+# create customized autocomplete index for elasticsearch
  curl -H 'Content-Type: application/json' \
    -X PUT http://es:9200/shellfish_db_opt \
    -d \

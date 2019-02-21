@@ -1,11 +1,11 @@
-# use python as a parent image
+# use node as a parent image
 FROM node:10
 
-# set the workind directory
+# set the working directory
 # WORKDIR /app
 
 # copy the current directory contents into app folder
 # COPY . /app
 
-# install packages from requirements
+# install elasticdump using npm
 RUN npm install -g elasticdump
