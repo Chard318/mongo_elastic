@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Expert Finder</title>
+
+    <script src="https://use.fontawesome.com/254d4d7a14.js"></script>
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    {% load staticfiles %}
+    <link href="{% static '/expertfinder/home.css' %}" rel="stylesheet">
+  </head>
+
+
+  <body>
+    <div class="container">
+      <h2>Expert Finder 
+      <a href="https://www.shell.com/" target="_black">
+        <i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>
+      </a>
+      </h2>
+    {% if user.is_authenticated %}
+     <form method="post">
+     {% csrf_token %}
+     <input type="submit" class="btn btn-primary" value="Logout">
+     </form>       
+    {% endif %}
+      <div class="jumbotron" style="background-color: white;">
+        <center>
+         {% load staticfiles %}
+         <img src="{% static '/expertfinder/Shell_Logo3.png' %}" alt="SHELL LOGO" width="450" height="300">
+        </center>
+      </div>
+    </div>
+
+
+
+
+{% if not user.is_authenticated %}
+
+<div class="container">
+  <form class="form-signin" method="post">
+  {% csrf_token %}
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" name="user_name" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="pass_word" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+</div>
+
+{% endif %}
+
+
+{% if user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-horizontal" action="{% url 'search' %}" role="form" method="GET">
+<!--       {% csrf_token %}
+ -->      <div class="input-group" id="adv-search">
+          <input type="text" class="form-control" placeholder="Search for snippets" name="major-query" style="border-radius:5px; ">
+          <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                  <div class="dropdown dropdown-lg">
+                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                      <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <div class="form-group">
+                           <label for="filter">Filter by:</label>
+                             <div class="form-check">
+                             <label class="form-check-label">
+                               <input class="form-check-input" type="checkbox" name="Location" id="Location" value="Location" checked>
+                               Location<br>
+                               <input class="form-check-input" type="checkbox" name="Job Family" id="Job Family" value="Job Family" checked>
+                               Job Family<br>
+                               <input class="form-check-input" type="checkbox" name="Availability" id="Availability" value="Availability" checked>
+                               Availability<br>
+                             </label>
+                           </div>
+                         </div>                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="searchstyle">
+          <div class="col-sm-12">
+            <div class="text-center">
+              <button class="btn btn-primary" id="singlebutton" name="main-search"> Search </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</html>

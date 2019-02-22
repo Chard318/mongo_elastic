@@ -1,0 +1,76 @@
+body {
+    padding-top: 50px;
+}
+
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
+}
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.inner-addon {
+  position: relative;
+}
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.input-group .form-control {
+    width: 100%;
+}
+
+.fa-question-circle-o {
+    float: right;
+    padding-top: 0px;
+    padding-right: 0px
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+.btn-group .btn {
+    margin-left: -1px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+  border-radius: 15px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-control {    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    top: 0;
+    left: 0;
+}
+.searchstyle {
+    padding: 30px;
+}
+#singlebutton {
+    border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 0px;
+        padding-top: 75px;
+    }
+}

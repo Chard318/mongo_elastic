@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Expert Finder</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    {% load staticfiles %}
+    <link href="{% static '/expertfinder/profile.css' %}" rel="stylesheet">
+
+  </head>
+
+<body>
+
+<nav class="navbar navbar-light bg-faded justify-content-between" style="background: #f7f7f7; padding-bottom:0px">
+  <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static '/expertfinder/Shell_Logo3.png' %}" alt="SHELL LOGO" width="120" height="80">
+      </a>
+  <h2>Expert Finder</h2>
+  <form class="form-inline" role="form" action="{% url 'search' %}" method="GET">
+    <input class="form-control mr-sm-2" type="text" placeholder="{{pastSearch}}" value="{{pastSearch}}" name="major-query" id="major-query" style="width: 350px">
+    <input type="submit" style="display:none" />
+    <div class="searchstyle">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <button class="btn btn-primary" id="singlebutton" name="main-search"> Search </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-9 pull-md-3 bd-content" style="padding-top:35px;">
+    
+    <div class="media">
+        <img class="rounded-circle account-img" src="imgs/empty.jpg">
+        
+        <!--
+
+            {{ user.profile.image.url }}
+
+
+        <div class="profile">
+        <div class="photo">
+            <input type="file" accept="image/*">
+            <div class="photo__helper">
+                <div class="photo__frame photo__frame--circle">
+                    <canvas class="photo__canvas"></canvas>
+                    <div class="message is-empty">
+                        <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                        <p class="message--mobile">Tap here to select your picture.</p>
+                    </div>
+                    <div class="message is-loading">
+                        <i class="fa fa-2x fa-spin fa-spinner"></i>
+                    </div>
+                    <div class="message is-dragover">
+                        <i class="fa fa-2x fa-cloud-upload"></i>
+                        <p>Drop your photo</p>
+                    </div>
+                    <div class="message is-wrong-file-type">
+                        <p>Only images allowed.</p>
+                        <p class="message--desktop">Drop your photo here or browse your computer.</p>
+                        <p class="message--mobile">Tap here to select your picture.</p>
+                    </div>
+                    <div class="message is-wrong-image-size">
+                        <p>Your photo must be larger than 350px.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo__options hide">
+                <div class="photo__zoom">
+                    <input type="range" class="zoom-handler">
+                </div><a href="javascript:;" class="remove"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <button type="button" id="previewBtn">Preview</button>
+    <hr>
+    <img src="" alt="" class="preview">
+    <img src="" alt="" class="preview preview--rounded"> -->
+
+        <div class="media-body">
+          <h2 class="account-heading">{{ profile.Name }}</h2>
+          <p class="text-secondary">{{ profile.Role_1 }} - {{ profile.Location_1 }}</p>
+        </div>
+    </div>
+    <p class="text"><b>About me:</b> {{ profile.About_me }}</p>
+    <p class="text"><b>Ask me about:</b> {{ profile.Ask_me_about }}</p>
+    <p class="text"><b>Skills:</b> {{ profile.Skills }}</p>
+    <!--<p class="text"><b>Certifications:</b> {{ profile.Certifications_Accreditations }}</p>
+    <p class="text"><b>Publications:</b> {{ profile.Publications }}</p>-->
+    </div>
+  </div>
+    {% if documents %}
+    <p class="text">
+
+        <b>Relevant Documents:</b>
+
+    </p>
+    <div class="scrolling-wrapper" style="display:flex;flex-wrap:nowrap;overflow-x:auto;">
+
+        {% for doc in documents %}
+
+        <a href={% url 'item' doc.pdf %} style="flex: 0 0 auto;padding: 10px;"> 
+            <img style="border:2px solid black;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="{% url 'item' doc.jpg %}" title="{{ doc.pdf }}" width="165.75" height="214.5"/> </a>
+
+        {% endfor %}
+    
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+
+    <!-- Bootstrap core JavaScript
+
+        .card {
+            flex: 0 0 auto;
+        }
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="{% static '/expertfinder/result.js' %}" type="text/javascript"></script>
+  </body>
+</html>
