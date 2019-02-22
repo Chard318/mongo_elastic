@@ -10,15 +10,20 @@ services:
       - "0.0.0.0"
     expose:
       - "27017"
+    ports:
+      - "27017:27017"
     
   es:
-    image: elasticsearch:6.6.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
     environment:
       discovery.type: single-node
     user: elasticsearch
     expose:
       - "9200"
       - "9300"
+    ports:
+      - "9300:9300"
+      - "9200:9200"
   
   mongosetup:
     image: mongo
@@ -34,13 +39,18 @@ services:
       - ./pythonsetup.sh:/pythonsetup.sh
     entrypoint:
       ["/pythonsetup.sh"]
-  
+    
   nodesetup:
     build: ./Docker_node
     volumes:
       - ./elasticdump.sh:/elasticdump.sh
     entrypoint:
       ["/elasticdump.sh"]
-  
-  
-    
+
+  website:
+    build: ./Docker_website
+    image: docker_mongdb_elasticsearch_website 
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
